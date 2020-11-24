@@ -3,11 +3,13 @@ from .models import Question, Choice
 from django.template import loader 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+
 # Get qusetions and display them
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]#-pub_date here '-' means 
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
+
 # Show specific question and choices
 def detail(request, question_id):
     try :
